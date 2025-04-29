@@ -3,7 +3,7 @@ import "./Project.css";
 function Project(props) {
 
     return (<>
-        <div class="projectContainer">
+        <div className="projectContainer">
             <img src={props.projectImage} alt="project image" className="projectImage"/>
             <h2 className="title">{props.title}</h2>
             <div className="descriptContainer">
@@ -26,8 +26,8 @@ function Project(props) {
             </div>
             <h4 className="repo">{props.repo}</h4>
             <div className="buttonContainer">
-                <button className="button">{props.techone}</button>
-                <button classNAme="button">{props.techtwo}</button>
+                <button className="buttonproject">{props.techone}</button>
+                <button className="buttonproject">{props.techtwo}</button>
             </div>
         </div>
     </>
