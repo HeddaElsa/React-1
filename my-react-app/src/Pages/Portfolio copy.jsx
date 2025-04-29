@@ -2,14 +2,11 @@ import typinggame from "../assets/typinggame.png";
 import bhro from "../assets/Bhromaon.png";
 import genesisPic from "../assets/genesis.png"
 import Project from "../Components/Project.jsx";
+import Project from "../Components/PopupWindow.jsx";
 import "./Portfolio.css";
 import {useState} from 'react';
-import PopupWindow from "../Components/PopupWindow.jsx"
-
 
 function Portfolio() {
-
-    // open close project button
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -19,17 +16,6 @@ function Portfolio() {
         } else {
             setIsOpen(true);
         }
-    }
-
-    const [popupInfo, setPopupInfo] = useState({
-        title: "Text",
-        info: "more text",
-    }
-    )
-    const [popOpen, setPopOpen] = useState(false);
-
-    const closePopup = () => {
-        setPopOpen(false);
     }
 
     return (
@@ -43,7 +29,6 @@ function Portfolio() {
         </div>
         {isOpen && (
         <div className="project__outer">
-            {/* <div onClick={() => setPopOpen(true)}> */}
             <Project 
             title="Typing Game" 
             projectImage={typinggame} 
@@ -55,8 +40,6 @@ function Portfolio() {
             techone= "JavaScript"
             techtwo= "CSS"
             />
-            {/* </div> */}
-            {/* <div onClick={() => setPopOpen(true)}> */}
             <Project 
             title="Bhromoan" 
             projectImage={bhro} 
@@ -68,8 +51,6 @@ function Portfolio() {
             techone= "HTML"
             techtwo= "CSS"
             />
-            {/* </div> */}
-            {/* <div onClick={() => setPopOpen(true)}> */}
             <Project 
             title="Genesis" 
             projectImage={genesisPic} 
@@ -81,8 +62,6 @@ function Portfolio() {
             techone= "HTML"
             techtwo= "CSS"
             />
-            {/* </div> */}
-            {/* {popOpen && <PopupWindow title={popupInfo.title} info={popupInfo.info} onClick={closePopup}/>} */}
         </div>
         )}
     </div>
