@@ -1,0 +1,9 @@
+.home__background {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #F2F2F2;
+        gap: 40px;
+        padding: 30px;
+}
