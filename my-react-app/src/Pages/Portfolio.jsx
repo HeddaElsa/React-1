@@ -13,11 +13,11 @@ function Portfolio() {
 
     const [isOpen, setIsOpen] = useState(false);
 
-    const [popupInfo, setPopupInfo] = useState({
-        title: "Text",
-        info: "more text",
-    }
-    )
+    // const [popupInfo, setPopupInfo] = useState({
+    //     title: "Text",
+    //     info: "more text",
+    // }
+    // )
     const [popOpen, setPopOpen] = useState(false);
 
     const openClose = () => {
@@ -80,61 +80,49 @@ function Portfolio() {
         </div>
 
         {isOpen && (
-        <div className="searchbar__container">
-            <input 
-                type="text" 
-                className="searchbar__input"
-                placeholder="Search..."
-                value={search}
-                onChange={(e) => {
-                setSearch(e.target.value);
-                console.log(e.target.value);
-                }}
-                
-            />
-        </div>
-        )
-        }
-
-        {isOpen && (
-        <div className="project__outer">
-            {console.log("Projects array:", projects)}
-            {projects
-            .filter((project) => {
-                const searchLower = search.toLowerCase();
-                return (
-                    project.title.toLowerCase().includes(searchLower) ||
-                    project.description.toLowerCase().includes(searchLower) ||
-                    project.repo.toLowerCase().includes(searchLower)
-                );
-            })
-            // .filter((project) => {
-            //     console.log("Filtering:", project.title.toLowerCase(), "with search:", search.toLowerCase());
-            //     return project.title.toLowerCase().includes(search.toLowerCase());
-            // })
-            // .filter((project) => {
-            //     console.log("Filtering:", project.title.toLowerCase(), "with search:", search.toLowerCase());
-            //     return project.title.toLowerCase().includes(search.toLowerCase());
-            // })
-            // .filter((project) => project.title.toLowerCase().includes(search.toLowerCase()))
-            
-            .map((item, index) => (
-                <Project
-                key={index}
-                title={item.title}
-                projectImage={item.projectImage} 
-                description={item.description}
-                myrole={item.myrole}
-                challange={item.challange}
-                learnings={item.learnings}
-                repo={item.repo}
-                techone={item.techone}
-                techtwo={item.techtwo}
+            <>
+            <div className="searchbar__container">
+                <input 
+                    type="text" 
+                    className="searchbar__input"
+                    placeholder="Search..."
+                    value={search}
+                    onChange={(e) => {
+                        const value = e.target.value;
+                        setSearch(value); // Update the state
+                        console.log("Input value:", value); // Logs the current input value
+                    }}
                 />
-            )
-            )}
+            </div>
 
-        </div>
+            <div className="project__outer">
+                {projects
+                    .filter((project) => {
+                        if (!search.trim()) return true; // Show all projects if search is empty
+                        const searchLower = search.trim().toLowerCase();
+                        const isMatch =
+                            project.title.toLowerCase().includes(searchLower) ||
+                            project.description.toLowerCase().includes(searchLower) ||
+                            project.repo.toLowerCase().includes(searchLower);
+                        console.log("Filtering project:", project.title, "Match:", isMatch);
+                        return isMatch;
+                    })
+                    .map((item, index) => (
+                        <Project
+                            key={index}
+                            title={item.title}
+                            projectImage={item.projectImage}
+                            description={item.description}
+                            myrole={item.myrole}
+                            challange={item.challange}
+                            learnings={item.learnings}
+                            repo={item.repo}
+                            techone={item.techone}
+                            techtwo={item.techtwo}
+                        />
+                    ))}
+            </div>
+            </>
         )}
     </div>
     </>
